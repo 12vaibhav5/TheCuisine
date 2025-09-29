@@ -1,0 +1,2422 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Cuisine - Menu</title>
+    <!-- Use Tailwind CSS for modern styling and responsiveness -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .menu-category{
+        overflow-y: scroll;
+        max-height: 500px;
+        height: 490px;
+
+      }
+      .menu-category::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.menu-category {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      /* Custom styles for the responsive background image */
+      .bg-cover-image {
+        /* Replace this URL with your image address from Pexels */
+        background-image: url("https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+        background-size: cover;
+        background-position: center;
+      }
+      /* Gradient and shadow effect for the website title */
+      .cool-title {
+        background-image: linear-gradient(to right, #fde047, #facc15);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+      }
+      .nav-link {
+        transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+      }
+      .nav-link:hover {
+        color: #fde047;
+        transform: scale(1.1);
+      }
+      .menu-item {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      }
+      .menu-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+      }
+    </style>
+  </head>
+  <body class="bg-cover-image bg-fixed">
+    <div
+      class="min-h-screen flex flex-col backdrop-blur-sm bg-black/50 text-white"
+    >
+      <!-- Header Section -->
+      <header class="p-6 md:p-8 flex items-center justify-between">
+        <h1 class="text-4xl sm:text-5xl font-bold cool-title">The Cuisine</h1>
+
+        <!-- Mobile Menu Button -->
+        <button
+          id="menu-button"
+          class="md:hidden text-2xl p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-transform duration-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2.5"
+            stroke="currentColor"
+            class="w-8 h-8"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
+          </svg>
+          <span class="sr-only">Open main menu</span>
+        </button>
+
+        <!-- Navigation Links -->
+        <nav
+          id="nav-menu"
+          class="hidden md:flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 text-xl font-medium items-center"
+        >
+          <a href="index.html" class="nav-link text-white hover:text-yellow-400"
+            >Home</a
+          >
+          <a href="menu.html" class="nav-link text-yellow-400">Menu</a>
+          <a href="about.html" class="nav-link text-white hover:text-yellow-400"
+            >About Us</a
+          >
+          <a
+            href="contact.html"
+            class="nav-link text-white hover:text-yellow-400"
+            >Contact Us</a
+          >
+          <a
+            href="homedelivery.html"
+            class="nav-link text-white hover:text-yellow-400"
+            >Home Delivery</a
+          >
+          <a
+            href="booking.html"
+            class="nav-link text-white hover:text-yellow-400"
+            >Book a Table</a
+          >
+        </nav>
+
+        <button
+          id="cart-button"
+          class="bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full shadow-lg hover:bg-yellow-500 transition-all duration-300 transform hover:scale-105"
+        >
+          Cart (<span id="cart-count">0</span>)
+        </button>
+      </header>
+
+      <!-- Main Content Section -->
+      <main class="menu-main flex-grow p-6 text-center">
+        <h2
+          class="text-5xl sm:text-6xl font-extrabold mb-8 text-yellow-300 drop-shadow-lg"
+        >
+          Our Menu
+        </h2>
+
+        <div
+          id="menu-items-container"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        > 
+        <!-- Snacks Category -->
+          <div class="menu-category bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-2xl">
+            <h3 class="text-3xl font-bold mb-6">Snacks</h3>
+            <div class="menu-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://media.istockphoto.com/id/1024561260/photo/indian-veg-chapati-wrap-kathi-roll-served-in-a-plate-with-sauce-over-moody-background.jpg?s=612x612&w=0&k=20&c=vN91SuuszIxU22AwZN8ivJWIvRGLGVFz2L5ScxM-R-I=" alt="Veg Roll" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Veg Roll</p>
+              <p class="text-yellow-400 text-xl font-bold">₹50</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Veg Roll" data-price="50">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://herbsandflour.com/wp-content/uploads/2023/10/Crispy-Vegetable-Spring-Rolls-Recipe.jpg" alt="Spring Roll" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Spring Roll</p>
+              <p class="text-yellow-400 text-xl font-bold">₹70</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Spring Roll" data-price="50">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.naaginsauce.com/cdn/shop/articles/22-Naagin-Masala-Maggi.jpg?v=1704435639" alt="Masala Maggi" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Masala Maggi</p>
+              <p class="text-yellow-400 text-xl font-bold">₹40</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Masala Maggi" data-price="40">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://blog.swiggy.com/wp-content/uploads/2025/01/Image-1_-French_fries_1-1024x538.png" alt="French Fries" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">French Fries</p>
+              <p class="text-yellow-400 text-xl font-bold">₹40</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="French Fries" data-price="40">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://i.ytimg.com/vi/0pujwgKUvto/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDIHJYnbSoSQTGF693JG3aoYAVtRg" alt="Twisted Potato Rings" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Twisted Potato Rings</p>
+              <p class="text-yellow-400 text-xl font-bold">₹80</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Twisted Potato Rings" data-price="80">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://delishglobe.com/wp-content/uploads/2025/05/Nepalese-Momo.png" alt="Steam Momos" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Steam Momos (6Pc)</p>
+              <p class="text-yellow-400 text-xl font-bold">₹30</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Steam Momos" data-price="30">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://i.ytimg.com/vi/dNhgr9w7Y6g/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBX66hdQIfXhL35NSZVXGC5TKo8wg" alt="Fried Momos" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Fried Momos (6Pc)</p>
+              <p class="text-yellow-400 text-xl font-bold">₹40</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Fried Momos" data-price="40">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg2TbNsL2zS099rmZiAF9VQDStFieUX4ZgGx2uWoNYWgUESw0kQEkdjq6-U4zHKLSUkFuxBN-xW1WPRWt6c87Mq7de-rIaNJPxfbptVqfNC4zZpw_61iFvPpX8C5JjUpco9arUTN2_Ail3owVAnJZWNBxM5j0SN3OPGt2Es-ZjbLPoOqsyftf3uDT27/s4000/IMG_20220723_185625.webp" alt="Tandoori Momos" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Tandoori Momos (6Pc)</p>
+              <p class="text-yellow-400 text-xl font-bold">₹50</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Tandoori Momos" data-price="50">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Indian Snacks Category -->
+          <div class="menu-category bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-2xl">
+            <h3 class="text-3xl font-bold mb-6">Indian Snacks</h3>
+            <div class="menu-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://pipingpotcurry.com/wp-content/uploads/2020/12/Poha-Recipe-indori-Piping-Pot-Curry.jpg" alt="Poha" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Poha</p>
+                <p class="text-yellow-400 text-xl font-bold">₹30</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Poha" data-price="30">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://www.chefkunalkapur.com/wp-content/uploads/2023/11/DSC08208-1300x731.jpg?v=1699513010" alt="Kachori" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Kachori (2Pc) </p>
+                <p class="text-yellow-400 text-xl font-bold">₹30</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Kachori" data-price="30">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://media.istockphoto.com/id/2148933061/photo/selective-focus-samosa-spiced-potato-filled-pastry-crispy-savory-popular-indian-snack-with.jpg?s=612x612&w=0&k=20&c=HW1y3HYPa7r-YwB6wn3gktZP-1Fzw9bYKsR8D6yqQOs=" alt="Samosa" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Samosa (2Pc) </p>
+                <p class="text-yellow-400 text-xl font-bold">₹30</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Samosa" data-price="30">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://www.spiceupthecurry.com/wp-content/uploads/2022/05/batata-vada-2.jpg" alt="Batata Vada" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Batata Vada</p>
+                <p class="text-yellow-400 text-xl font-bold">₹20</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Batata Vada" data-price="20">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://images.archanaskitchen.com/images/recipes/snack-recipes/indian-snack-recipes/Bhaji_Vada_Recipe_Lentil_and_Vegetable_Fritters_9bc57ca677.jpg" alt="Bhaji Vada" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Bhaji Vada</p>
+                <p class="text-yellow-400 text-xl font-bold">₹20</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Bhaji Vada" data-price="20">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://c.ndtvimg.com/veaousl_hari-mirch-ke-pakode_640x480_24_July_18.jpg" alt="Mirch Pakoda" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Mirch Pakoda</p>
+                <p class="text-yellow-400 text-xl font-bold">₹20</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Mirch Pakoda" data-price="20">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy8e3173QSKmujZElaFMvMjHI2P8hv-gKFrA&s" alt="Bread Pakoda" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Bread Pakoda</p>
+                <p class="text-yellow-400 text-xl font-bold">₹20</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Bread Pakoda" data-price="20">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Pani_Puri1.JPG/1200px-Pani_Puri1.JPG" alt="Paani Puri" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Paani Puri (5Pc)</p>
+                <p class="text-yellow-400 text-xl font-bold">₹20</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Paani Puri" data-price="20">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://rakskitchen.net/wp-content/uploads/2012/06/6972130004_d39625cde5_z.jpg" alt="Paani Puri" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Dahi Puri (6Pc)</p>
+                <p class="text-yellow-400 text-xl font-bold">₹30</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Dahi Puri" data-price="30">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://simpleindianmeals.com/wp-content/uploads/2015/05/Dahi-Vada.jpg" alt="Dahi Vada" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Dahi Vada</p>
+                <p class="text-yellow-400 text-xl font-bold">₹20</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Dahi Vada" data-price="20">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZvMeuOIbE1yU3idYmqM5N8XpL-qFNWj6UGA&s" alt="Bhel Puri" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Bhel Puri</p>
+                <p class="text-yellow-400 text-xl font-bold">₹40</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Bhel Puri" data-price="40">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://cdn.prod.website-files.com/64931d2aee18510b47f4bb1f/6849f26f866d1069ac01b3af_Papdi-Recipe-Papdi-Chaat-Recipe-Cover-Image.jpg" alt="Chaat Papdi" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Chaat Papdi</p>
+                <p class="text-yellow-400 text-xl font-bold">₹40</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Chaat Papdi" data-price="40">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://www.honeywhatscooking.com/wp-content/uploads/2020/10/Aloo-Tikki-Chaat61.jpg" alt="Aaloo Tikkia" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Aaloo Tikkia</p>
+                <p class="text-yellow-400 text-xl font-bold">₹30</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Aaloo Tikkia" data-price="30">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://sinfullyspicy.com/wp-content/uploads/2024/10/Chole-Tikki-Chaat-Featured-Image.jpg" alt="Chole Tikkia" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Chole Tikkia</p>
+                <p class="text-yellow-400 text-xl font-bold">₹30</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Chole Tikkia" data-price="30">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://i0.wp.com/dishesandflavors.com/wp-content/uploads/2020/10/IMG_7841.jpeg?fit=4032%2C3024&ssl=1" alt="Veg Kathi Roll" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Veg Kathi Roll</p>
+                <p class="text-yellow-400 text-xl font-bold">₹40</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Veg Kathi Roll" data-price="40">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://bhojmasale.com/cdn/shop/articles/crispy-aloo-patties-recipe-706373_1024x1024.jpg?v=1739153058" alt="Aaloo Patties" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Aaloo Patties</p>
+                <p class="text-yellow-400 text-xl font-bold">₹20</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Aaloo Patties" data-price="20">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://defencebakery.in/cdn/shop/files/Paneer_patties_43b67fd3-3cbc-4ddb-95bd-ef1ca3101c7d.jpg?v=1756545069" alt="Paneer Patties" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Paneer Patties</p>
+                <p class="text-yellow-400 text-xl font-bold">₹30</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Paneer Patties" data-price="30">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://images.news18.com/ibnkhabar/uploads/2023/06/fafda-16875144723x2.jpg" alt="Fafda" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Fafda</p>
+                <p class="text-yellow-400 text-xl font-bold">₹20</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Fafda" data-price="20">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://ministryofcurry.com/wp-content/uploads/2024/05/dabeli-5.jpg" alt="Dabeli" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Dabeli</p>
+                <p class="text-yellow-400 text-xl font-bold">₹60</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Dabeli" data-price="60">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS22yWb4xO6ADSmxKVfHIMc_zvmrm8hKzc2A&s" alt="Siddu" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Siddu</p>
+                <p class="text-yellow-400 text-xl font-bold">₹130</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Siddu" data-price="130">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://c.ndtvimg.com/2023-09/u113o4r_medu-vada_625x300_06_September_23.jpg" alt="Medu Vada" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Medu Vada (2Pc)</p>
+                <p class="text-yellow-400 text-xl font-bold">₹40</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Medu Vada" data-price="40">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVMFV57HoBznF7uj4vR-ZBeWp5PSDT7XxrAw&s" alt="Vada Sambar" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Vada Sambar</p>
+                <p class="text-yellow-400 text-xl font-bold">₹80</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Vada Sambar" data-price="80">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://t4.ftcdn.net/jpg/10/41/99/53/360_F_1041995329_Y948A29Hru2TXn8JgkWMwJmIVauyQ9jq.jpg" alt="Khamand Dhokla" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Khamand Dhokla (4Pc)</p>
+                <p class="text-yellow-400 text-xl font-bold">₹20</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Khamand Dhokla" data-price="20">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://ministryofcurry.com/wp-content/uploads/2024/06/vada-pav-3.jpg" alt="Vada Pav" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Vada Pav</p>
+                <p class="text-yellow-400 text-xl font-bold">₹40</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Vada Pav" data-price="40">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://carveyourcraving.com/wp-content/uploads/2021/10/paneer-tikka-skewers.jpg" alt="Paneer Tikka" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Paneer Tikka</p>
+              <p class="text-yellow-400 text-xl font-bold">₹150</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Paneer Tikka" data-price="160">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://t4.ftcdn.net/jpg/03/24/56/73/360_F_324567329_VIPsg4s4kWkvqJviANcIgeYPG602kN56.jpg" alt="Veg Manchurian" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Veg Manchurian (Dry/Semi-Gravy/Gravy)</p>
+              <p class="text-yellow-400 text-xl font-bold">₹120</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Veg Manchurian" data-price="120">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://sinfullyspicy.com/wp-content/uploads/2021/11/1200-by-1200-images.jpg" alt="Paneer Pakoda" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Paneer Pakoda (8Pc)</p>
+              <p class="text-yellow-400 text-xl font-bold">₹160</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Paneer Pakoda" data-price="160">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.whiskaffair.com/wp-content/uploads/2020/09/Veg-Cutlet-2-3.jpg" alt="Veg Cutlet" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Veg Cutlet (4Pc)</p>
+              <p class="text-yellow-400 text-xl font-bold">₹80</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Veg Cutlet" data-price="80">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.foodie-trail.com/wp-content/uploads/2022/08/PHOTO-2022-06-19-20-15-22.jpg" alt="Veg Lollipop" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Veg Lollipop</p>
+              <p class="text-yellow-400 text-xl font-bold">₹160</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Veg Lollipop" data-price="160">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Indian Meal Category -->
+          <div class="menu-category bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-2xl">
+            <h3 class="text-3xl font-bold mb-6">Indian Meal</h3>
+            <div class="menu-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+             <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOIcWg_TGtrxgBAuZjVfOoCyPXCPjQUoItLg&s" alt="Litti Chokha" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Litti Chokha</p>
+                <p class="text-yellow-400 text-xl font-bold">₹75</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Litti Chokha" data-price="75">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://www.shutterstock.com/image-photo/pindi-chole-kulche-roadside-choley-600nw-1527268880.jpg" alt="Chole Kulche" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Chole Kulche</p>
+                <p class="text-yellow-400 text-xl font-bold">₹80</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Chole Kulche" data-price="80">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiSLB7zfxFCFag7Pt9CHnH3wk61PILgDo5CCTxT01YjSmEKOVY6uskLp8qEnLi8sIsAAMBOWo4AGXHUavOeuWowkrR4u4QtSlryJKCwcR837ajLT906ZOcBhwQuomU453tC8azJe5SikPUleEkJhz-FmTQKa8frlxB7tir-_0V97PqF89QHvQfh5iNH/s1080/IMG_20220904_210330.jpg" alt="Chole Bhature" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Chole Bhature</p>
+                <p class="text-yellow-400 text-xl font-bold">₹120</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Chole Bhature" data-price="120">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://images.lifestyleasia.com/wp-content/uploads/sites/7/2022/02/01171428/YFL-Pav-Bhaji-3.jpg" alt="Pav Bhaji" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Pav Bhaji</p>
+                <p class="text-yellow-400 text-xl font-bold">₹80</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Pav Bhaji" data-price="80">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://www.ohmyveg.co.uk/wp-content/uploads/2023/12/Misal-Pav-2-2-e1722869218662.jpg" alt="Misal Pav" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Misal Pav</p>
+                <p class="text-yellow-400 text-xl font-bold">₹120</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Misal Pav" data-price="120">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://thumbs.dreamstime.com/b/indian-rajasthani-meal-dal-baati-churma-traditional-rajasthani-meal-dal-bati-churma-consisting-crushed-wheat-churma-dessert-158606454.jpg" alt="Dal Baati Churma" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Dal Baati Churma</p>
+                <p class="text-yellow-400 text-xl font-bold">₹250</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Dal Baati" data-price="250">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://clubmahindra.gumlet.io/blog/images/Sarson-ka-Saag-aur-Makki-ki-Roti-Recipe-resized.jpg?w=376&dpr=2.6" alt="Saron ka Saag & Makke ki Roti" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Sarson ka Saag & Makke ki Roti</p>
+                <p class="text-yellow-400 text-xl font-bold">₹150</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Sarson ka Saag & Makke ki Roti" data-price="150">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://t3.ftcdn.net/jpg/01/86/33/72/360_F_186337209_9rbcMLu3wGCDNaEoK1jO0aNzb0pv7Xs7.jpg" alt="Plain Dosa" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Plain Dosa</p>
+                <p class="text-yellow-400 text-xl font-bold">₹80</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Plain Dosa" data-price="80">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://palatesdesire.com/wp-content/uploads/2022/09/Mysore-masala-dosa-recipe@palates-desire.jpg" alt="Masala Dosa" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Masala Dosa</p>
+                <p class="text-yellow-400 text-xl font-bold">₹100</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Masala Dosa" data-price="100">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://d1w7312wesee68.cloudfront.net/KXe-_OfcVTGuCQToV_7CxPllCqNj9pjByzEO_xJ5AnY/resize:fit:720:720/plain/s3://toasttab/restaurants/restaurant-259278000000000000/menu/items/3/item-1300000001087925453_1745268886.jpg" alt="Paneer Dosa" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Paneer Dosa</p>
+                <p class="text-yellow-400 text-xl font-bold">₹120</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Paneer Dosa" data-price="120">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://vaya.in/recipes/wp-content/uploads/2018/02/Idli-and-Sambar-1.jpg" alt="Idli Sambar" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Idli Sambar</p>
+                <p class="text-yellow-400 text-xl font-bold">₹60</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Idli Sambar" data-price="60">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://rakskitchen.net/wp-content/uploads/2013/03/8526106715_6ae8a52e74_z.jpg" alt="Onion Uttapam" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Onion Uttapam</p>
+                <p class="text-yellow-400 text-xl font-bold">₹100</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Onion Uttapam" data-price="100">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://aartimadan.com/wp-content/uploads/2020/07/instant-uttapam-recipe.jpg" alt="Tomato Uttapam" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Tomato Uttapam</p>
+                <p class="text-yellow-400 text-xl font-bold">₹100</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Tomato Uttapam" data-price="100">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgsqtFbZTK07V31_I7mz52yuQ8BPIhAvKpiuOYvPUY84T-3Ut9yygqTRJA8svCV2c98Y_DRiISMuC9d37m-LdsqdB18kurPWCRRlroUo5mDLtaW0_asykPOA7nxhUGSGyHfgs3b2gSNSMs4/s1600/paneer-uttapam5.jpg" alt="Paneer Uttapam" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Paneer Uttapam</p>
+                <p class="text-yellow-400 text-xl font-bold">₹120</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Paneer Uttapam" data-price="120">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Pizza Category-->
+          <div
+            class="menu-category bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-2xl"
+          >
+            <h3 class="text-3xl font-bold mb-6">Pizza</h3>
+            <div class="menu-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://i.pinimg.com/736x/df/5a/6f/df5a6fb9586961fc539bc13ee7f5ec25.jpg" alt="Cheese Veg Pizza" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Cheese Veg Pizza</p>
+              <p class="text-yellow-400 text-xl font-bold">₹140</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Cheese Veg Pizza" data-price="140">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://api.pizzahut.io/v1/content/en-in/in-1/images/pizza/corn.f8baa08ad7f607f1de30f96bb9245b50.1.jpg" alt="Corn Pizza" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Corn Pizza</p>
+              <p class="text-yellow-400 text-xl font-bold">₹100</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Corn Pizza" data-price="100">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://storage.googleapis.com/shy-pub/360704/Onion-Capsicum-Tomato-1736510829998.jpeg" alt="Tomato Capsicum Pizza" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Tomato Capsicum Pizza</p>
+              <p class="text-yellow-400 text-xl font-bold">₹100</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Tomato Capsicum Pizza" data-price="100">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://hillpizza.in/ambikapur/wp-content/uploads/sites/7/2022/11/Onion-capcicum-pizza.jpg" alt="Onion Capsicum Pizza" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Onion Capsicum Pizza</p>
+              <p class="text-yellow-400 text-xl font-bold">₹100</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Onion Capsicum Pizza" data-price="100">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.recipetineats.com/tachyon/2023/05/Garlic-cheese-pizza_9.jpg" alt="Cheese Garlic Pizza" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Cheese Galic Pizza (Spicy)</p>
+              <p class="text-yellow-400 text-xl font-bold">₹150</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Cheese Garlic Pizza" data-price="150">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS39h7TWyiyeZ72l0myx2s95VNIahUX39l23Q&s" alt="Paneer Tikka Pizza" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Paneer Tikka Pizza (Spicy)</p>
+              <p class="text-yellow-400 text-xl font-bold">₹150</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Paneer Tikka Pizza" data-price="150">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://as1.ftcdn.net/jpg/04/58/52/00/1000_F_458520091_FeCZXQkEqZHTl39ZZwPPuallicK1DCZh.jpg" alt="Chinese Pizza" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Chinese Pizza (Spicy)</p>
+              <p class="text-yellow-400 text-xl font-bold">₹140</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Chinese Pizza" data-price="140">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSczY1c07QhWEpLe2vMGiZiSRUH2O7NyLupMo57nlquNdmHBzgfMNGaNk_P2wXgrAlwKhc&usqp=CAU" alt="Italian Pizza" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Italian Pizza (Spicy)</p>
+              <p class="text-yellow-400 text-xl font-bold">₹140</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Italian Pizza" data-price="140">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Burger Category -->
+          <div
+            class="menu-category bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-2xl"
+          >
+            <h3 class="text-3xl font-bold mb-6">Burger</h3>
+            <div class="menu-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1IvOEs9XPj4AaKqnTnI5698CueUIQ600TRA&s" alt="Veg Burger" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Veg Burger</p>
+              <p class="text-yellow-400 text-xl font-bold">₹60</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Veg Burger" data-price="60">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://nishkitchen.com/wp-content/uploads/2020/10/Aloo-Tikki-Burger-1B.jpg" alt="Aaloo Tikki Burger" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Aaloo Tikki Burger</p>
+              <p class="text-yellow-400 text-xl font-bold">₹70</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Aaloo Tikki Burger" data-price="70">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://simplysuperb.in/wp-content/uploads/2023/01/Veg-cheese-slice-Burger.jpg" alt="Veg Cheese Burger" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Veg Cheese Burger</p>
+              <p class="text-yellow-400 text-xl font-bold">₹100</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Veg Cheese Burger" data-price="100">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxgGAsTUR_4zmoiGxTA5AH1WicU7LIm4KsJA&s" alt="Double Tikki Burger" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Double Tikki Burger</p>
+              <p class="text-yellow-400 text-xl font-bold">₹110</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Double Tikki Burger" data-price="110">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sandwich Category -->
+          <div
+            class="menu-category bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-2xl"
+          >
+            <h3 class="text-3xl font-bold mb-6">Sandwich</h3>
+            <div class="menu-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://vanitascorner.com/wp-content/uploads/2023/04/Bombay-Sandwich-VC.jpg " alt="Bombay Sandwich" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Bombay Sandwich</p>
+                <p class="text-yellow-400 text-xl font-bold">₹40</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Bombay Sandwich" data-price="40">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://gurukripahotel.com/wp-content/uploads/2025/04/veg-cheese-sandwich.jpg" alt="Veg Cheese Sandwich" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Veg Cheese Sandwich</p>
+                <p class="text-yellow-400 text-xl font-bold">₹70</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Veg Cheese Sandwich" data-price="70">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://i.ytimg.com/vi/wbc62-6Gq9I/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDnYi1mbiEwGyXGeO22bi5HOW3a_g" alt="Aaloo Masala Sandwich" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Aaloo Masala Sandwich</p>
+                <p class="text-yellow-400 text-xl font-bold">₹70</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Aaloo Masala Sandwich" data-price="70">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://www.indianhealthyrecipes.com/wp-content/uploads/2022/04/cheese-corn-sandwich.webp" alt="Mayo Corn Sandwich" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Mayo Corn Sandwich</p>
+                <p class="text-yellow-400 text-xl font-bold">₹70</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Mayo Corn Sandwich" data-price="70">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://i.ytimg.com/vi/gX0M7lD5oQE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLA0LGY1SipcDCdgqngzO5K91qsBow" alt="Paneer Chilli Sandwich" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Paneer Chilli Sandwich (Spicy)</p>
+                <p class="text-yellow-400 text-xl font-bold">₹85</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Paneer Chilli Sandwich" data-price="85">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://www.yumcurry.com/wp-content/uploads/2021/05/club-sandwich-recipe-1-e1621613042142.jpg" alt="Veg Club Sandwich" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Veg Club Sandwich (Spicy)</p>
+                <p class="text-yellow-400 text-xl font-bold">₹100</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Veg Club Sandwich" data-price="100">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chinese Category -->
+          <div class="menu-category bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-2xl">
+            <h3 class="text-3xl font-bold mb-6">Chinese</h3>
+            <div class="menu-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://derafarms.com/cdn/shop/files/deraproducts_71.png?v=1719207065" alt="Veg Chowmein" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Veg Chowmein</p>
+              <p class="text-yellow-400 text-xl font-bold">₹100</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Veg Chowmein" data-price="100">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://shwetainthekitchen.com/wp-content/uploads/2023/03/vegetable-noodles.jpg" alt="Veg Noodles" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Veg Noodles</p>
+              <p class="text-yellow-400 text-xl font-bold">₹100</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Veg Noodles" data-price="100">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://media.fuzia.com/assets/uploads/images/co_brand_1/article/2022/img-20220115-212041-1642262288.jpg" alt="Veg Kothe" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Veg Kothe</p>
+              <p class="text-yellow-400 text-xl font-bold">₹160</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Veg Kothe" data-price="160">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://i.ytimg.com/vi/JEeO_hagtVM/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAIZlSGb8YAFGcTzGkfXH42AKkw5Q" alt="Chinese Pasta" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Chinese Pasta</p>
+              <p class="text-yellow-400 text-xl font-bold">₹140</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Chinese Pasta" data-price="140">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://1.bp.blogspot.com/-K0MWll744S0/X5QDHnOLWsI/AAAAAAAAM64/LgY2E6QI-tY0n1zbPeInDLH8u3ZRXhy_ACLcBGAsYHQ/s16000/Veg%2Bfried%2Brice%2Brecipe.JPG" alt="Chinese Fried Rice" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Chinese Fried Rice</p>
+              <p class="text-yellow-400 text-xl font-bold">₹100</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Chinese Fried Rice" data-price="100">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.funfoodfrolic.com/wp-content/uploads/2020/04/Chilli-Paneer-Thumbnail.jpg" alt="Chilli Paneer" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Chilli Paneer (Dry/Semi-Gravy/Gravy)</p>
+              <p class="text-yellow-400 text-xl font-bold">₹150</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Chilli Paneer" data-price="150">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://vegecravings.com/wp-content/uploads/2023/08/Honey-Chilli-Potato-Recipe-Step-By-Step-Instructions-scaled.jpg" alt="Honey Chilli Potato" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Honey Chilli Potato</p>
+              <p class="text-yellow-400 text-xl font-bold">₹120</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Honey Chilli Potato" data-price="120">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Italian Category -->
+          <div class="menu-category bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-2xl">
+            <h3 class="text-3xl font-bold mb-6">Italian</h3>
+            <div class="menu-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://media.istockphoto.com/id/1053864102/photo/pasta-with-meat-tomato-sauce-and-vegetables.jpg?s=612x612&w=0&k=20&c=yxWKQCIzhVsTPdnK_N5mkODwtIKfepRTvXdPN_ffPkY=" alt="Red Sauce Pasta" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Red Sauce Pasta</p>
+              <p class="text-yellow-400 text-xl font-bold">₹120</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Red Sauce Pasta" data-price="120">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.indianveggiedelight.com/wp-content/uploads/2022/12/white-sauce-pasta-featured.jpg" alt="White Sauce Pasta" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">White Sauce Pasta</p>
+              <p class="text-yellow-400 text-xl font-bold">₹120</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="White Sauce Pasta" data-price="120">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://richanddelish.com/wp-content/uploads/2022/08/rose-sauce.jpg" alt="Pink Sauce Pasta" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Pink Sauce Pasta</p>
+              <p class="text-yellow-400 text-xl font-bold">₹120</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Pink Sauce Pasta" data-price="120">Add to Cart</button>
+              </div>   
+            </div>
+          </div>
+
+          <!-- Soup Category -->
+          <div class="menu-category bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-2xl">
+            <h3 class="text-3xl font-bold mb-6">Soup</h3>
+            <div class="menu-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.indianhealthyrecipes.com/wp-content/uploads/2022/11/tomato-soup-recipe.jpg" alt="Tomato Soup" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Tomato Soup</p>
+              <p class="text-yellow-400 text-xl font-bold">₹80</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Tomato Soup" data-price="80">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.simplyrecipes.com/thmb/SY2lL2neXpYOvkxhYvoUcl6pXLQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Simply-Recipes-French-Onion-Soup-LEAD-2-757941da129647dc90e490ed72b3807c.jpg" alt="French Onion Soup" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">French Onion Soup</p>
+              <p class="text-yellow-400 text-xl font-bold">₹80</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="French Onion Soup" data-price="80">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.sharmispassions.com/wp-content/uploads/2013/07/ClearSoup4.jpg" alt="Veg Clear Soup" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Veg Clear Soup</p>
+              <p class="text-yellow-400 text-xl font-bold">₹80</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Veg Clear Soup" data-price="80">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.cookingcarnival.com/wp-content/uploads/2023/09/Hot-and-sour-soup-4.jpg" alt="Veg Hot & Sour Soup" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Veg Hot & Sour Soup</p>
+              <p class="text-yellow-400 text-xl font-bold">₹80</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Veg Hot & Sour Soup" data-price="80">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.awesomecuisine.com/wp-content/uploads/2010/03/Vegetable-Manchow-Soup.jpg" alt="Manchow Soup" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Manchow Soup</p>
+              <p class="text-yellow-400 text-xl font-bold">₹80</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Manchow Soup" data-price="80">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw9zDlsfBkmxlr8o8_NvRVp3qZS_7yziEhnQ&s" alt="Sweet Corn Soup" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Sweet Corn Soup</p>
+              <p class="text-yellow-400 text-xl font-bold">₹85</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Sweet Corn Soup" data-price="85">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://fullofplants.com/wp-content/uploads/2022/02/easy-15-minute-vegan-ramen-with-miso-tofu-and-pak-choi-vegetarian-noodle-soup-thumb-2.jpg" alt="Veg Ramen" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Veg Ramen</p>
+              <p class="text-yellow-400 text-xl font-bold">₹350</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Veg Ramen" data-price="350">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Salad & Raita Category -->
+          <div class="menu-category bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-2xl">
+            <h3 class="text-3xl font-bold mb-6">Salad & Raita</h3>
+            <div class="menu-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.whiskaffair.com/wp-content/uploads/2020/12/Sumac-Onion-2-3.jpg" alt="Onion Salad" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Onion Salad</p>
+              <p class="text-yellow-400 text-xl font-bold">₹40</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Onion Salad" data-price="40">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://getinspiredeveryday.com/wp-content/uploads/2022/02/Easy-Green-Salad-Get-Inspired-Everyday-7.jpg" alt="Green Salad" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Green Salad</p>
+              <p class="text-yellow-400 text-xl font-bold">₹50</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Green Salad" data-price="50">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.allrecipes.com/thmb/tpfs_TonT1nLyAeEnuaHxmwqWxs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/237984-Marinated-Cucunber-Onion-and-Tomato-Salad-DDMFS-3X4-11906-383c6af35f2a47d4a78996736e9bd5e4.jpg" alt="Mix Salad" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Mix Salad</p>
+              <p class="text-yellow-400 text-xl font-bold">₹60</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Mix Salad" data-price="60">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUI_xB-qd5vteITNPNj_5R_iCOtKwcqoQOCg&s" alt="Green Chilly Fry" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Green Chilly Fry (15Pc)</p>
+              <p class="text-yellow-400 text-xl font-bold">₹45</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Green Chilly Fry" data-price="45">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2Dn5I9_PmPqDmSr723x7fMAAR5QZUrycObw&s" alt="Plain Curd" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Plain Curd</p>
+              <p class="text-yellow-400 text-xl font-bold">₹50</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Plain Curd" data-price="50">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://5.imimg.com/data5/SELLER/Default/2024/2/393577499/WV/WU/AR/207582481/fresh-sweet-curd.jpg" alt="Sweet Curd" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Sweet Curd</p>
+              <p class="text-yellow-400 text-xl font-bold">₹60</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Sweet Curd" data-price="60">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://dinedelicious.in/wp-content/uploads/2021/03/Boondi-raita-Recipe-2.jpg" alt="Boondi Raita" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Boondi Raita</p>
+              <p class="text-yellow-400 text-xl font-bold">₹60</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Boondi Raita" data-price="60">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.plantbasedredhead.com/wp-content/uploads/2024/06/raita-mit-gurken-tomaten-zwiebel-vegan-mixed-veg-raita-cucumber-tomato-onion-mint_plantbasedredhead_1x1.jpg" alt="Veg Raita" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Veg Raita</p>
+              <p class="text-yellow-400 text-xl font-bold">₹70</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Veg Raita" data-price="70">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Papad Category -->
+          <div class="menu-category bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-2xl">
+            <h3 class="text-3xl font-bold mb-6">Papad</h3>
+            <div class="menu-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.onlin.in/public/images/StreetDarbar/products/670e22608d13b-670e462976dfb.jpg" alt="Papad Roasted" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Papad Roasted</p>
+              <p class="text-yellow-400 text-xl font-bold">₹20</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Papad Roasted" data-price="20">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://dww3ueizok6z0.cloudfront.net/food/banner/9303-c71b112c332d7a28cdd57dfb206b19f57fe99e6f" alt="Papad Fry" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Papad Fry</p>
+              <p class="text-yellow-400 text-xl font-bold">₹25</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Papad Fry" data-price="25">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://t4.ftcdn.net/jpg/09/34/65/85/360_F_934658531_7yhFm5BQ6NJ9lieQr9hc31RFqMe1cycQ.jpg" alt="Papad Masala Roasted" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Papad Masala Roasted</p>
+              <p class="text-yellow-400 text-xl font-bold">₹30</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Papad Masala Roasted" data-price="30">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.whiskaffair.com/wp-content/uploads/2020/09/Masala-Papad-2-3.jpg" alt="Papad Masala Fry" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Papad Masala Fry</p>
+              <p class="text-yellow-400 text-xl font-bold">₹35</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Papad Masala Fry" data-price="35">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Starters Category -->
+          <div class="menu-category bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-2xl">
+            <h3 class="text-3xl font-bold mb-6">Starters</h3>
+            <div class="menu-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+             <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.kannammacooks.com/wp-content/uploads/peanut-chaat-groundnut-salad-recipe-13.jpg" alt="Peanut Chaat" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Peanut Chaat</p>
+              <p class="text-yellow-400 text-xl font-bold">₹90</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Peanut Chaat" data-price="90">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://cookingfromheart.com/wp-content/uploads/2022/03/Crispy-Roasted-Chana-in-Air-Fryer-5.jpg" alt="Chana Roast" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Chana Roast</p>
+              <p class="text-yellow-400 text-xl font-bold">₹90</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Chana Roast" data-price="90">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8dDQwmRliGWYTVZlq6m19PIJxkyNFedWl6A&s" alt="Veg Seekh Kebab" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Veg Seekh Kebab</p>
+              <p class="text-yellow-400 text-xl font-bold">₹130</p>  
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Veg Seekh Kebab" data-price="130">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfHVo86pfZ98tQRR2cbDfCCeLFlDjecnw5Qg&s" alt="Harabhara Kebab" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Harabhara Kebab</p>
+              <p class="text-yellow-400 text-xl font-bold">₹130</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Harabhara Kebab" data-price="130">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://seasonalflavours.net/wp-content/uploads/2022/07/cripsy-corn-serving-dish.jpg" alt="Crispy Corn" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Crispy Corn</p>
+              <p class="text-yellow-400 text-xl font-bold">₹110</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Crispy Corn" data-price="110">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.temptingtreat.com/wp-content/uploads/2025/03/pakora-p1.jpg" alt="Mix Pakoda" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Mix Pakoda</p>
+              <p class="text-yellow-400 text-xl font-bold">₹120</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Mix Pakoda" data-price="120">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Indian Cuisine Category -->
+          <div class="menu-category bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-2xl">
+            <h3 class="text-3xl font-bold mb-6">Indian Cuisine</h3>
+            <div class="menu-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.awesomecuisine.com/wp-content/uploads/2007/10/Dal-Fry.jpg" alt="Dal Fry" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Dal Fry</p>
+              <p class="text-yellow-400 text-xl font-bold">₹110</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Dal Fry" data-price="110">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.indianhealthyrecipes.com/wp-content/uploads/2021/04/dal-tadka-recipe.jpg" alt="Dal Tadka" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Dal Tadka</p>
+              <p class="text-yellow-400 text-xl font-bold">₹120</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Dal Tadka" data-price="120">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.jcookingodyssey.com/wp-content/uploads/2025/02/gujarati-dal-dhokli.jpg" alt="Dal Dhokli" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Dal Dhokli</p>
+              <p class="text-yellow-400 text-xl font-bold">₹150</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Dal Dhokli" data-price="150">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.funfoodfrolic.com/wp-content/uploads/2023/04/Dal-Makhani-Blog.jpg" alt="Dal Makhni" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Dal Makhni</p>
+              <p class="text-yellow-400 text-xl font-bold">₹150</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Dal Makhni" data-price="150">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.indianveggiedelight.com/wp-content/uploads/2020/02/instant-pot-rajma-masala-featured.jpg" alt="Rajma" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Rajma</p>
+              <p class="text-yellow-400 text-xl font-bold">₹150</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Rajma" data-price="150">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://c.ndtvimg.com/2023-09/oqpk3pdo_kadhi-pakoda_625x300_13_September_23.jpg" alt="Kadhi Pakoda" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Kadhi Pakoda</p>
+              <p class="text-yellow-400 text-xl font-bold">₹150</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Kadhi Pakoda" data-price="150">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://s3-ap-south-1.amazonaws.com/betterbutterbucket-silver/payal-jain41518335038.jpeg" alt="Shahi Kadhi" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Shahi Kadhi</p>
+              <p class="text-yellow-400 text-xl font-bold">₹180</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Shahi Kadhi" data-price="180">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.whiskaffair.com/wp-content/uploads/2024/11/Bhindi-Fry-2-3.jpg" alt="Bhindi Fry" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Bhindi Fry</p>
+              <p class="text-yellow-400 text-xl font-bold">₹120</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Bhindi Fry" data-price="120">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnRUDhLuiiDiUj0YcaWdw9l16GmtDWW40K_Q&s" alt="Bhindi Masala" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Bhindi Masala</p>
+              <p class="text-yellow-400 text-xl font-bold">₹140</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Bhindi Masala" data-price="140">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.cubesnjuliennes.com/wp-content/uploads/2021/02/Jeera-Aloo-Recipe.jpg" alt="Jeera Aaloo" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Jeera Aaloo</p>
+              <p class="text-yellow-400 text-xl font-bold">₹120</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Jeera Aaloo" data-price="120">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://feastingfood.com/wp-content/uploads/2024/05/Khatte-aloo-close-up.jpg" alt="Aaloo Masala" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Aaloo Masala</p>
+              <p class="text-yellow-400 text-xl font-bold">₹120</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Aaloo Masala" data-price="120">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://deliveryraja.com/wp-content/uploads/2024/09/20240109_203247.webp" alt="Aaloo Do Pyaja" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Aaloo Do Pyaja</p>
+              <p class="text-yellow-400 text-xl font-bold">₹120</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Aaloo Do Pyaja" data-price="120">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.cookingandme.com/wp-content/uploads/2014/07/14523274883_3b6177e82b_z-427x375.jpg" alt="Aaloo Gobhi" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Aaloo Gobhi</p>
+              <p class="text-yellow-400 text-xl font-bold">₹120</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Aaloo Gobhi" data-price="120">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.cookwithmanali.com/wp-content/uploads/2023/03/Vegan-Indian-Aloo-Palak-Recipe.jpg" alt="Aaloo Palak" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Aaloo Palak</p>
+              <p class="text-yellow-400 text-xl font-bold">₹140</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Aaloo Palak" data-price="140">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.spiceupthecurry.com/wp-content/uploads/2014/11/dry-aloo-matar-1.jpg" alt="Aaloo Mutter" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Aaloo Mutter</p>
+              <p class="text-yellow-400 text-xl font-bold">₹120</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Aaloo Mutter" data-price="120">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://sinfullyspicy.com/wp-content/uploads/2024/01/1200-by-1200-images-3.jpg" alt="Dum Aaloo" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Dum Aaloo</p>
+              <p class="text-yellow-400 text-xl font-bold">₹120</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Dum Aaloo" data-price="120">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://binjalsvegkitchen.com/wp-content/uploads/2015/01/Kashmiri-Dum-Aloo-H1.jpg" alt="Kashmiri Dum Aaloo" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Kashmiri Dum Aaloo</p>
+              <p class="text-yellow-400 text-xl font-bold">₹160</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Kashmiri Dum Aaloo" data-price="160">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.indianhealthyrecipes.com/wp-content/uploads/2024/03/methi-matar-malai-recipe.jpg" alt="Maithi Mutter Malai" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Maithi Mutter Malai</p>
+              <p class="text-yellow-400 text-xl font-bold">₹170</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Maithi Mutter Malai" data-price="170">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsT8TUD-NzEQeESGXCTvbEFMbcMp-heDW-Kw&s" alt="Malai Kofta" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Malai Kofta</p>
+              <p class="text-yellow-400 text-xl font-bold">₹170</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Malai Kofta" data-price="170">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.jcookingodyssey.com/wp-content/uploads/2025/02/navratan-korma.jpg" alt="Navratan Korma" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Navratan Korma</p>
+              <p class="text-yellow-400 text-xl font-bold">₹190</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Navratan Korma" data-price="190">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://myfoodstory.com/wp-content/uploads/2022/04/Veg-Kolhapuri-3-500x500.jpg" alt="Veg Kolhapuri" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Veg Kolhapuri</p>
+              <p class="text-yellow-400 text-xl font-bold">₹160</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Veg Kolhapuri" data-price="160">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgXnY7rGxnEsueNs-r4-iPwHveQaWnJ6P7uQ&s" alt="Kaju Curry" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Kaju Curry</p>
+              <p class="text-yellow-400 text-xl font-bold">₹175</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Kaju Curry" data-price="175">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.jcookingodyssey.com/wp-content/uploads/2012/03/sev-tameta-nu-shaak-6.jpg" alt="Sev Tamatar" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Sev Tamatar</p>
+              <p class="text-yellow-400 text-xl font-bold">₹120</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Sev Tamatar" data-price="120">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://deliveryraja.com/wp-content/uploads/2024/11/maxresdefault.jpg" alt="Mix Veg" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Mix Veg</p>
+              <p class="text-yellow-400 text-xl font-bold">₹160</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Mix Veg" data-price="160">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.indianhealthyrecipes.com/wp-content/uploads/2022/03/aloo-gobi-recipe.jpg" alt="Gobhi Masala" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Gobhi Masala</p>
+              <p class="text-yellow-400 text-xl font-bold">₹120</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Gobhi Masala" data-price="120">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.livofy.com/health/wp-content/uploads/2023/03/2023_01_25_creamy_chana_masala_1.jpg" alt="Chana Masala" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Chana Masala</p>
+              <p class="text-yellow-400 text-xl font-bold">₹120</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Chana Masala" data-price="120">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.ruchiskitchen.com/wp-content/uploads/2020/12/Paneer-butter-masala-recipe-3-500x500.jpg" alt="Butter Paneer Masala" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Butter Paneer Masala</p>
+              <p class="text-yellow-400 text-xl font-bold">₹160</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Butter Paneer Masala" data-price="160">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.spiceupthecurry.com/wp-content/uploads/2016/05/chole-paneer-1-500x500.jpg" alt="Chola Paneer" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Chola Paneer</p>
+              <p class="text-yellow-400 text-xl font-bold">₹170</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Chola Paneer" data-price="170">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://cdn.prod.website-files.com/65e2ec4e51f6693a3af9151d/660bbc2bf96bfa42f8c93333_f0ef7b68-009e-4c37-bdd5-f67ca31339eb.webp" alt="Paneer Tikka Masala" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Paneer Tikka Masala</p>
+              <p class="text-yellow-400 text-xl font-bold">₹200</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Paneer Tikka Masala" data-price="200">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://cheeseforthought.com/wp-content/uploads/2024/09/indian-pub-shahi-paneer-masala-recipe.png" alt="Shahi Paneer" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Shahi Paneer</p>
+              <p class="text-yellow-400 text-xl font-bold">₹180</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Shahi Paneer" data-price="180">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://theartisticcook.com/wp-content/uploads/2024/02/paneer1new.jpg" alt="Paneer Pasanda" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Paneer Pasanda</p>
+              <p class="text-yellow-400 text-xl font-bold">₹180</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Paneer Pasanda" data-price="180">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.funfoodfrolic.com/wp-content/uploads/2021/06/Paneer-Kofta-Blog-Thumbnail.jpg" alt="Paneer Kofta" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Paneer Kofta</p>
+              <p class="text-yellow-400 text-xl font-bold">₹160</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Paneer Kofta" data-price="160">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://sarahsvegankitchen.com/wp-content/uploads/2025/01/Palak-Tofu-7.jpg" alt="Palak Paneer" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Palak Paneer</p>
+              <p class="text-yellow-400 text-xl font-bold">₹160</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Palak Paneer" data-price="160">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAAa5j_qUqmYP1wX2NfESDHxE1y_rnIpAUdA&s" alt="Green Paneer" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Green Paneer</p>
+              <p class="text-yellow-400 text-xl font-bold">₹170</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Green Paneer" data-price="170">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://i0.wp.com/geteasycooking.com/wp-content/uploads/2022/04/METHI-MALAI-PANEER-edit.00_01_57_11.Still001.jpg" alt="Maithi Malai Paneer" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Maithi Malai Paneer</p>
+              <p class="text-yellow-400 text-xl font-bold">₹185</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Maithi Malai Paneer" data-price="185">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl7aUsEBwkp3KgL0KN-tDbMT_SWQ8oQvHb7A&s" alt="Kadahi Paneer" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Kadahi Paneer</p>
+              <p class="text-yellow-400 text-xl font-bold">₹170</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Kadahi Paneer" data-price="170">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://c.ndtvimg.com/gws/ms/how-to-make-handi-paneer/assets/2.jpeg?1730877094" alt="Handi Paneer" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Handi Paneer</p>
+              <p class="text-yellow-400 text-xl font-bold">₹170</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Handi Paneer" data-price="170">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://sandhyahariharan.co.uk/wp-content/uploads/2018/09/homestyle-matar-paneer-1-of-4.jpg" alt="Mutter Paneer" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Mutter Paneer</p>
+              <p class="text-yellow-400 text-xl font-bold">₹160</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Mutter Paneer" data-price="160">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://rakskitchen.net/wp-content/uploads/2021/11/paneer-do-pyaza-feat.jpg" alt="Paneer Do Pyaja" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Paneer Do Pyaja</p>
+              <p class="text-yellow-400 text-xl font-bold">₹160</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Paneer Do Pyaja" data-price="160">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://i.ytimg.com/vi/tM-C9z8wKwk/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDK5RbnJVRRPO-Oyiy9atFOqoW3eg" alt="Kaju Paneer" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Kaju Paneer</p>
+              <p class="text-yellow-400 text-xl font-bold">₹190</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Kaju Paneer" data-price="190">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.cubesnjuliennes.com/wp-content/uploads/2021/03/Paneer-Bhurji.jpg" alt="Paneer Bhurjee" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Paneer Bhurjee</p>
+              <p class="text-yellow-400 text-xl font-bold">₹185</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Paneer Bhurjee" data-price="185">Add to Cart</button>
+              </div>
+            </div>
+          </div>    
+
+          <!-- Rice Category -->
+          <div class="menu-category bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-2xl">
+            <h3 class="text-3xl font-bold mb-6">Rice</h3>
+            <div class="menu-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://hajialirestaurant.com/wp-content/uploads/2023/04/steamed-rice.jpg"
+                  alt="Plain Rice"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Plain Rice</p>
+                <p class="text-yellow-400 text-xl font-bold">₹70</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Plain Rice"
+                  data-price="70"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://www.whiskaffair.com/wp-content/uploads/2021/06/Jeera-Rice-2-3-1-500x375.jpg"
+                  alt="Jeera Rice"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Jeera Rice</p>
+                <p class="text-yellow-400 text-xl font-bold">₹80</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Jeera Rice"
+                  data-price="80"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://www.indianveggiedelight.com/wp-content/uploads/2023/03/lemon-rice-stovetop-featured.jpg"
+                  alt="Lemon Rice"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Lemon Rice</p>
+                <p class="text-yellow-400 text-xl font-bold">₹110</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Lemon Rice"
+                  data-price="110"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://media.istockphoto.com/id/1168154867/photo/indian-curd-rice-with-carrots-pomegranate-and-with-additional-tempering-of-spices-close-up-in.jpg?s=612x612&w=0&k=20&c=r2OMqBs5H-VPjKj9n0SwTKYoC0XQ0-8jhQZB1YY8obU="
+                  alt="Curd Rice"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Curd Rice</p>
+                <p class="text-yellow-400 text-xl font-bold">₹90</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Curd Rice"
+                  data-price="90"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://holycowvegan.net/wp-content/uploads/2021/09/masala-khichdi.jpg"
+                  alt="Khichdi"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Khichdi</p>
+                <p class="text-yellow-400 text-xl font-bold">₹90</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Khichdi"
+                  data-price="90"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://www.cubesnjuliennes.com/wp-content/uploads/2019/11/Veg-Pulao-2.jpg"
+                  alt="Pulao"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Pulao</p>
+                <p class="text-yellow-400 text-xl font-bold">₹90</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Pulao"
+                  data-price="90"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://media.istockphoto.com/id/179085494/photo/indian-biryani.jpg?s=612x612&w=0&k=20&c=VJAUfiuavFYB7PXwisvUhLqWFJ20-9m087-czUJp9Fs="
+                  alt="Veg Biryani"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Veg Biryani</p>
+                <p class="text-yellow-400 text-xl font-bold">₹160</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Veg Biryani"
+                  data-price="160"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Breads Category -->
+          <div
+            class="menu-category bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-2xl"
+          >
+            <h3 class="text-3xl font-bold mb-6">Breads</h3>
+            <div class="menu-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://recipe52.com/wp-content/uploads/2021/10/Roti-Recipe-37.jpg"
+                  alt="Tawa Roti (Desi Ghee)"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">
+                  Tawa Roti (Desi Ghee) (1 Pc)
+                </p>
+                <p class="text-yellow-400 text-xl font-bold">₹18</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Tawa Roti (Desi Ghee)"
+                  data-price="18"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://cluecoded.com/wp-content/uploads/2024/09/rothi.webp"
+                  alt="Tawa Roti (Plain)"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Tawa Roti (Plain) (1 Pc)</p>
+                <p class="text-yellow-400 text-xl font-bold">₹15</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Tawa Roti (Plain)"
+                  data-price="15"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://mughaldarbar.in/upload/pro/product-featured-91.jpg"
+                  alt="Tandoori Roti (Plain)"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Tandoori Roti (Plain) (1PC)</p>
+                <p class="text-yellow-400 text-xl font-bold">₹20</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Tandoori Roti (Plain)"
+                  data-price="20"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://www.shutterstock.com/image-photo/butter-roti-isolated-over-rustic-600nw-1880497348.jpg"
+                  alt="Tandoori Roti (Butter)"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">
+                  Tandoori Roti (Butter) (1PC)
+                </p>
+                <p class="text-yellow-400 text-xl font-bold">₹25</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Tandoori Roti (Butter)"
+                  data-price="25"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://www.cookingcarnival.com/wp-content/uploads/2021/02/Whole-wheat-Paratha.jpg"
+                  alt="Tawa Paratha"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Tawa Paratha (1PC)</p>
+                <p class="text-yellow-400 text-xl font-bold">₹22</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Tawa Paratha"
+                  data-price="22"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://i.ytimg.com/vi/H3tW-UFSojU/maxresdefault.jpg"
+                  alt="Butter Naan"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Butter Naan</p>
+                <p class="text-yellow-400 text-xl font-bold">₹60</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Butter Naan"
+                  data-price="60"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://shriandsam.com/cdn/shop/articles/Untitled_design_36.png?v=1628249398&width=2240"
+                  alt="Kulcha"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Kulcha</p>
+                <p class="text-yellow-400 text-xl font-bold">₹30</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Kulcha"
+                  data-price="30"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://spicecravings.com/wp-content/uploads/2020/09/Bhatura-3.jpg"
+                  alt="Bhatura"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Bhatura</p>
+                <p class="text-yellow-400 text-xl font-bold">₹40</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Bhatura"
+                  data-price="40"
+                >
+                  Add to Cart
+                </button>
+              </div>
+               <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://indiasweethouse.in/cdn/shop/files/ExtraPav.png?v=1718887487"
+                  alt="Pav"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Pav</p>
+                <p class="text-yellow-400 text-xl font-bold">₹40</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Pav"
+                  data-price="40"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://i.ytimg.com/vi/nMuvAuMI7bk/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCUwWvnHkbb_ISBPzf3-vAp8NhOUg"
+                  alt="Lachha Paratha"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Lachha Paratha</p>
+                <p class="text-yellow-400 text-xl font-bold">₹70</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Lachha Paratha"
+                  data-price="70"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://i.cdn.newsbytesapp.com/images/l77120250918152434.jpeg"
+                  alt="Aaloo Paratha"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Aaloo Paratha (2PC)</p>
+                <p class="text-yellow-400 text-xl font-bold">₹100</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Aaloo Paratha"
+                  data-price="100"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://www.funfoodfrolic.com/wp-content/uploads/2022/01/Thepla-Blog-Thumbnail.jpg"
+                  alt="Methi Paratha"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Methi Paratha (2PC)</p>
+                <p class="text-yellow-400 text-xl font-bold">₹100</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Methi Paratha"
+                  data-price="100"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://www.indianhealthyrecipes.com/wp-content/uploads/2024/01/gobi-paratha-cauliflower-paratha-recipe.jpg"
+                  alt="Gobhi Paratha"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Gobhi Paratha (2PC)</p>
+                <p class="text-yellow-400 text-xl font-bold">₹100</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Gobhi Paratha"
+                  data-price="100"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://i.ytimg.com/vi/mzVY1J0yduY/maxresdefault.jpg"
+                  alt="Pyaj Paratha"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Pyaj Paratha (2PC)</p>
+                <p class="text-yellow-400 text-xl font-bold">₹100</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Pyaj Paratha"
+                  data-price="100"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtHlosmiZRP8C-pJQPtA5mcM_GgQoTjDmQLQ&s"
+                  alt="Sev Paratha"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Sev Paratha (2PC)</p>
+                <p class="text-yellow-400 text-xl font-bold">₹100</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Sev Paratha"
+                  data-price="100"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://preview.redd.it/mix-veg-paratha-homemade-v0-wh6ksmm50g3e1.jpeg?auto=webp&s=733807fbf400e2a49bb66861e1cd5581ca77d50c"
+                  alt="Mix Paratha"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Mix Paratha (2PC)</p>
+                <p class="text-yellow-400 text-xl font-bold">₹100</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Mix Paratha"
+                  data-price="100"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://www.spiceupthecurry.com/wp-content/uploads/2022/05/paneer-paratha-2-360x360.jpg"
+                  alt="Paneer Paratha"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Paneer Paratha (2PC)</p>
+                <p class="text-yellow-400 text-xl font-bold">₹100</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Paneer Paratha"
+                  data-price="100"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sweets Category -->
+          <div
+            class="menu-category bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-2xl"
+          >
+            <h3 class="text-3xl font-bold mb-6">Sweets</h3>
+            <div class="menu-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://media.istockphoto.com/id/470622307/photo/indrani-an-indian-sweet-dish.jpg?s=612x612&w=0&k=20&c=CT9vabmoYJnqUHMuEo5QnCLsSg8xq7NZlOG4gVQXZY8="
+                  alt="Indrani"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Indrani</p>
+                <p class="text-yellow-400 text-xl font-bold">₹50</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Indrani"
+                  data-price="50"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://www.indianhealthyrecipes.com/wp-content/uploads/2020/10/rabri-rabdi-480x270.jpg"
+                  alt="Rabdi"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Rabdi (100Gm)</p>
+                <p class="text-yellow-400 text-xl font-bold">₹50</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Rabdi"
+                  data-price="50"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://someindiangirl.com/wp-content/uploads/2019/04/Greek-yogurt-shrikhand-5-of-8-scaled.jpg"
+                  alt="Shrikhand"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Shrikhand (100Gm)</p>
+                <p class="text-yellow-400 text-xl font-bold">₹50</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Shrikhand"
+                  data-price="50"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8TW1bJS1iU2cBgQFsyCbSfU1Z7SlAUw0wVw&s"
+                  alt="Moong Halwa"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">
+                  Moong Halwa (100Gm) (Seasonal)
+                </p>
+                <p class="text-yellow-400 text-xl font-bold">₹50</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Moong Halwa"
+                  data-price="50"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-Kl11Sse-4afhlB0nrkcRHdePZ2hNirnfgg&s"
+                  alt="Gajar Halwa"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">
+                  Gajar Halwa (100Gm) (Seasonal)
+                </p>
+                <p class="text-yellow-400 text-xl font-bold">₹50</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Gajar Halwa"
+                  data-price="50"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://i0.wp.com/www.geetascuisine.com/wp-content/uploads/2015/01/Rajbhog-Sweet_30-1.jpg?fit=640%2C427"
+                  alt="Raj Bhog"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Raj Bhog (1PC)</p>
+                <p class="text-yellow-400 text-xl font-bold">₹30</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Raj Bhog"
+                  data-price="30"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://eatsbyramya.com/wp-content/uploads/2024/10/rasmalai_can_recipe.jpg"
+                  alt="Rasmalai"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Rasmalai (2PC)</p>
+                <p class="text-yellow-400 text-xl font-bold">₹50</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Rasmalai"
+                  data-price="50"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://t3.ftcdn.net/jpg/09/97/82/26/360_F_997822668_Yd54OOABWndvHlRH04butYRObRDvyCQ1.jpg"
+                  alt="Rasgulle"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Rasgulle (2PC)</p>
+                <p class="text-yellow-400 text-xl font-bold">₹30</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Rasgulle"
+                  data-price="30"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img
+                  src="https://i0.wp.com/www.chitrasfoodbook.com/wp-content/uploads/2016/10/gulab-jamun-using-mix.jpg?w=1200&ssl=1"
+                  alt="Gulab Jamun"
+                  class="w-full h-32 object-cover rounded-lg mb-4"
+                />
+                <p class="font-semibold text-lg">Gulab Jamun (4PC)</p>
+                <p class="text-yellow-400 text-xl font-bold">₹50</p>
+                <button
+                  class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+                  data-name="Gulab Jamun"
+                  data-price="50"
+                >
+                  Add to Cart
+                </button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://media.istockphoto.com/id/1159362325/photo/bread-pakora.jpg?s=612x612&w=0&k=20&c=93uILcInCMXroXgjEJYXNeUzWh5NASSrEnylAgW7hcs=" alt="Jalebi" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Jalebi (100Gm) </p>
+                <p class="text-yellow-400 text-xl font-bold">₹20</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Jalebi" data-price="20">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://wbcdn.in/assets/img/uploads/mywb/uploads/DSC02535.JPG" alt="Kheer" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Kheer</p>
+                <p class="text-yellow-400 text-xl font-bold">₹40</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Kheer" data-price="40">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0AQIyOdMl5Ac7WBksma4xibJwh3hk9bVeyQ&s" alt="Sewaiyan" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Sewaiyan</p>
+                <p class="text-yellow-400 text-xl font-bold">₹60</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Sewaiyan" data-price="60">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pastry Category-->
+          <div
+            class="menu-category bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-2xl"
+          >
+            <h3 class="text-3xl font-bold mb-6">Pastry</h3>
+            <div class="menu-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyFw4kEshclzePUncEI-E4kII2yffUFESFtA&s" alt="Pineapple Pastry" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Pineapple Pastry</p>
+                <p class="text-yellow-400 text-xl font-bold">₹50</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Pineapple Pastry" data-price="50">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9J_KyotbMzD9N-RF2fTmoper2X52Im11Ydg&s" alt="Strawberry Pastry" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Strawberry Pastry</p>
+                <p class="text-yellow-400 text-xl font-bold">₹50</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Strawberry Pastry" data-price="50">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://5.imimg.com/data5/SELLER/Default/2024/6/430578853/ZE/OP/KQ/183646645/home-chocolate-500x500.jpg" alt="Vanilla Pastry" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Vanilla Pastry</p>
+                <p class="text-yellow-400 text-xl font-bold">₹50</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Vanilla Pastry" data-price="50">Add to Cart</button>
+              </div>
+               <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://img.cake24x7.com/writable/apps/cake24x7/ProductGallery/5971/Butterscotch-Cream-Pastry.jpg" alt="Butter Scotch Pastry" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Butter Scotch Pastry</p>
+                <p class="text-yellow-400 text-xl font-bold">₹50</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Butter Scotch Pastry" data-price="50">Add to Cart</button>
+              </div>
+               <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8aCLVKJn-8HMIjQeMwvFY66o_uNnD71kEyw&s" alt="Chocolate Pastry" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Chocolate Pastry</p>
+                <p class="text-yellow-400 text-xl font-bold">₹60</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Chocolate Pastry" data-price="60">Add to Cart</button>
+              </div>
+               <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://www.bakeryhut.in/upload/pro/product-featured-409.jpg" alt="Dark Chocolate Pastry" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Dark Chocolate Pastry</p>
+                <p class="text-yellow-400 text-xl font-bold">₹60</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Dark Chocolate Pastry" data-price="60">Add to Cart</button>
+              </div>
+               <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuf13xk5VakmcgV1hMf6BUuhh5wEwqXNg5BQ&s" alt="Black Forest Pastry" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Black Forest Pastry</p>
+                <p class="text-yellow-400 text-xl font-bold">₹70</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Black Forest Pastry" data-price="70">Add to Cart</button>
+              </div>
+            </div>  
+          </div>
+
+          <!-- Faluda Category-->
+          <div class="menu-category bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-2xl">
+            <h3 class="text-3xl font-bold mb-6">Faluda</h3>
+            <div class="menu-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://i.ytimg.com/vi/-yLwNGUBF2U/sddefault.jpg" alt="Kulfi Faluda" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Kulfi Faluda</p>
+                <p class="text-yellow-400 text-xl font-bold">₹140</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Kulfi Faluda" data-price="140">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://www.chefkunalkapur.com/wp-content/uploads/2022/05/Rabri-Falooda-scaled.jpg?v=1651374892" alt="Rabdi Faluda" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Rabdi Faluda</p>
+                <p class="text-yellow-400 text-xl font-bold">₹140</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Rabdi Faluda" data-price="140">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShM-6EC4lqcnvpZZkqEW0RveGi1u5xIgjT-w&s" alt="Fruit Faluda" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Fruit Faluda</p>
+                <p class="text-yellow-400 text-xl font-bold">₹150</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Fruit Faluda" data-price="150">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://i.pinimg.com/564x/37/8d/6c/378d6cf08a699d580716b7deedd53af7.jpg" alt="Dry Fruit Faluda" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Dry Fruit Faluda</p>
+                <p class="text-yellow-400 text-xl font-bold">₹160</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Dry Fruit Faluda" data-price="160">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <!--Curd Drink Category-->
+          <div class="menu-category bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-2xl">
+            <h3 class="text-3xl font-bold mb-6">Curd Drink</h3>
+            <div class="menu-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://i.ytimg.com/vi/82DyooLMuLE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDaJo9EOKyA0o5eSxxKoEAFAMg7tA" alt="Butter Milk" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Butter Milk (Namkeen Chach)</p>
+                <p class="text-yellow-400 text-xl font-bold">₹25</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Butter Milk" data-price="25">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK2VikqCptaiiXHyP61Ne_ypFCBsgzeKEJgQ&s" alt="Fruit Custard" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Fruit Custard</p>
+                <p class="text-yellow-400 text-xl font-bold">₹60</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Fruit Custard" data-price="60">Add to Cart</button>
+              </div>
+               <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://i.ytimg.com/vi/Hs5M5rA0TAs/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCutWsdPf8TqK2HEuiGtWyfJDK9MA" alt="Shahi Shikanji" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Shahi Shikanji</p>
+                <p class="text-yellow-400 text-xl font-bold">₹60</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Shahi Shikanji" data-price="60">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://t4.ftcdn.net/jpg/02/73/48/81/360_F_273488134_56WbN8KtEEOS5HS2dhhdSMvWgi99V7SR.jpg" alt="Kesaria Lassi" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Kesaria Lassi</p>
+                <p class="text-yellow-400 text-xl font-bold">₹40</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Kesaria Lassi" data-price="40">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+                <img src="https://www.cookclickndevour.com/wp-content/uploads/2016/05/mango-lassi-recipe-c.jpg" alt="Mango Lassi" class="w-full h-32 object-cover rounded-lg mb-4"/>
+                <p class="font-semibold text-lg">Mango Lassi</p>
+                <p class="text-yellow-400 text-xl font-bold">₹40</p>
+                <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Mango Lassi" data-price="40">Add to Cart</button>
+              </div>
+            </div>  
+          </div>
+
+          <!-- Tea Category -->
+          <div class="menu-category bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-2xl">
+            <h3 class="text-3xl font-bold mb-6">Tea</h3>
+            <div class="menu-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.teaforturmeric.com/wp-content/uploads/2021/11/Masala-Chai-Tea-Recipe-Card.jpg" alt="Masala Tea" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Masala Tea</p>
+              <p class="text-yellow-400 text-xl font-bold">₹30</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Masala Tea" data-price="30">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://static.toiimg.com/thumb/msid-122805305,width-1280,height-720,resizemode-4/122805305.jpg" alt="Black Tea" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Black Tea</p>
+              <p class="text-yellow-400 text-xl font-bold">₹20</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Black Tea" data-price="20">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6d1KuTqJSZ6XiR2PU7FhFhWDkhqtCI935RA&s" alt="Green Tea" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Green Tea</p>
+              <p class="text-yellow-400 text-xl font-bold">₹20</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Green Tea" data-price="20">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.allrecipes.com/thmb/Bcb8mHLzzIiRt5WgOGRqfjpFFTU=/0x512/filters:no_upscale():max_bytes(150000):strip_icc()/109190-smooth-sweet-tea-DDMFS-4x3-9e849a386d414cb2b852099f02b6782d.jpg" alt="Ice Tea" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Ice Tea</p>
+              <p class="text-yellow-400 text-xl font-bold">₹40</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Ice Tea" data-price="40">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://5.imimg.com/data5/HO/FD/AI/SELLER-35879600/tulsi-green-tea-250x250.jpg" alt="Tulsi Tea" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Tulsi Tea</p>
+              <p class="text-yellow-400 text-xl font-bold">₹30</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Tulsi Tea" data-price="30">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThRCEqK3SrDscyQKuYscZ7Scp2qkU_D39Wrw&s" alt="Adrak Tea" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Adrak Tea</p>
+              <p class="text-yellow-400 text-xl font-bold">₹30</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Adrak Tea" data-price="30">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScLAYxBK3T9BmYzKF0cAowAxU53l_dIh9h6g&s" alt="Elaichi Tea" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Elaichi Tea</p>
+              <p class="text-yellow-400 text-xl font-bold">₹30</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Elaichi Tea" data-price="30">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Coffee Category -->
+           <div class="menu-category bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-2xl">
+            <h3 class="text-3xl font-bold mb-6">Coffee</h3>
+            <div class="menu-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQggG5mKpLwNAeu836DpGPXukz8s4_TSIRwEQ&s" alt="Cappuccino" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Cappuccino</p>
+              <p class="text-yellow-400 text-xl font-bold">₹40</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Cappuccino" data-price="40">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.cuisinart.com/dw/image/v2/ABAF_PRD/on/demandware.static/-/Sites-us-cuisinart-sfra-Library/default/dw42dcae51/images/recipe-Images/cafe-latte1-recipe_resized.jpg?sw=1200&sh=630" alt="Latte" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Latte</p>
+              <p class="text-yellow-400 text-xl font-bold">₹40</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Latte" data-price="40">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.thespruceeats.com/thmb/HJrjMfXdLGHbgMhnM0fMkDx9XPQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/what-is-espresso-765702-hero-03_cropped-ffbc0c7cf45a46ff846843040c8f370c.jpg" alt="Espresso" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Espresso</p>
+              <p class="text-yellow-400 text-xl font-bold">₹40</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Espresso" data-price="40">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrXCbdO7wkrKsFQBRUnBmNgXuPJouXTy0hHA&s" alt="Ristretto" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Ristretto</p>
+              <p class="text-yellow-400 text-xl font-bold">₹40</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Ristretto" data-price="40">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://i0.wp.com/krakencoffeeco.com/wp-content/uploads/2023/03/lungo-recipe.jpg" alt="Lungo" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Lungo</p>
+              <p class="text-yellow-400 text-xl font-bold">₹40</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Lungo" data-price="40">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuOfFc4HJPtdd_ukR9cGukGp4kg7J-4z2HTQ&s" alt="Black Coffee" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Black Coffee</p>
+              <p class="text-yellow-400 text-xl font-bold">₹30</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Black Coffee" data-price="30">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIdndo-0rv6AEcP9LpnqdLuGOkCHD7_hw7jg&s" alt="Colf Coffee" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Cold Coffee</p>
+              <p class="text-yellow-400 text-xl font-bold">₹70</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Cold Coffee" data-price="70">Add to Cart</button>
+              </div>
+            </div>  
+          </div>
+          
+          <!-- Juice Category -->
+          <div class="menu-category bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-2xl">
+            <h3 class="text-3xl font-bold mb-6">Juice</h3>
+            <div class="menu-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://i2.wp.com/lmld.org/wp-content/uploads/2022/04/Lemonade-4.jpg" alt="Lemonade" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Lemonade</p>
+              <p class="text-yellow-400 text-xl font-bold">₹40</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Lemonade" data-price="40">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPQ3042ITaRhW6DgH291d0A_3ajA29nrp0gw&s" alt="Pineapple Juice" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Pineapple Juice</p>
+              <p class="text-yellow-400 text-xl font-bold">₹45</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Pineapple Juice" data-price="45">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.rebootwithjoe.com/wp-content/uploads/2012/05/watermelon-pineapple-juice.jpg" alt="Water Melon Juice" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Water Melon Juice</p>
+              <p class="text-yellow-400 text-xl font-bold">₹45</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Water Melon Juice" data-price="45">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://lh3.googleusercontent.com/AIV6LMsyMOGYlrTERrdtomTfR-jAq3uHP1JNtKexoNS1I0B2-C5NR4fK2xgkRndW0Dwq28-q59MW5BSUHRniOAKbwTOV8uQIhd0" alt="Musk Melon Juice" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Musk Melon Juice</p>
+              <p class="text-yellow-400 text-xl font-bold">₹45</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Musk Melon Juice" data-price="45">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://media.istockphoto.com/id/1455706684/photo/freshly-squeezed-grape-juice-on-a-rustic-wooden-table-healthy-eating.jpg?s=612x612&w=0&k=20&c=mMmrtnHzIwnxnwiI9vO5AJjphjZVDuLBRS_pfYgooNE=" alt="Black Grapes Juice" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Black Grapes Juice</p>
+              <p class="text-yellow-400 text-xl font-bold">₹45</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Black Grapes Juice" data-price="45">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://tiimg.tistatic.com/fp/1/007/745/fresh-healthy-zero-added-sugar-low-calories-natural-refreshing-tasty-green-grapes-juice-346.jpg" alt="Green Grapes Juice" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Green Grapes Juice</p>
+              <p class="text-yellow-400 text-xl font-bold">₹45</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Green Grapes Juice" data-price="45">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQU2KSsJz39TdwozVRDE5ERkn0tqkm-3LNBww&s" alt="Mosambi Juice" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Mosambi Juice</p>
+              <p class="text-yellow-400 text-xl font-bold">₹55</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Mosambi Juice" data-price="55">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://img.freepik.com/free-photo/glass-orange-juice-placed-wood_1150-9659.jpg?semt=ais_hybrid&w=740&q=80" alt="Orange Juice" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Orange Juice</p>
+              <p class="text-yellow-400 text-xl font-bold">₹55</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Orange Juice" data-price="55">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://static.toiimg.com/photo/79647262.cms" alt="Kinnow Juice" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Kinnow Juice</p>
+              <p class="text-yellow-400 text-xl font-bold">₹55</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Kinnow Juice" data-price="55">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://buildyourbite.com/wp-content/uploads/2024/06/vegetable-juice-featured.jpg" alt="Vegetable Juice" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Vegetable Juice </p>
+              <p class="text-yellow-400 text-xl font-bold">₹60</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Vegetable Juice" data-price="60">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://images.stockcake.com/public/6/c/7/6c700625-55b8-412e-8b6d-41b1826663d7_large/pomegranate-juice-glass-stockcake.jpg" alt="Anar Juice" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Anar Juice</p>
+              <p class="text-yellow-400 text-xl font-bold">₹65</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Anar Juice" data-price="65">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG8xzbI545UONbKGHoyJLG1yFcTE7ezh3KLQ&s" alt="Kiwi Juice" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Kiwi Juice</p>
+              <p class="text-yellow-400 text-xl font-bold">₹65</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Kiwi Juice" data-price="65">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://thumbs.dreamstime.com/b/fresh-made-lychee-juice-wooden-background-31401483.jpg" alt="Litchi Juice" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Litchi Juice</p>
+              <p class="text-yellow-400 text-xl font-bold">₹65</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Litchi Juice" data-price="65">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://instamart-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_960,w_960//InstamartAssets/Receipes/dragon_fruit_juice.webp" alt="Dragon Fruit Juice" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Dragon Fruit Juice</p>
+              <p class="text-yellow-400 text-xl font-bold">₹65</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Dragon Fruit Juice" data-price="65">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://media.istockphoto.com/id/1435730496/photo/coconut-juice-and-fresh-young-green-coconut.jpg?s=612x612&w=0&k=20&c=q7mj6zGy_w0QbkwwzfqMh9aVH4Sttcdn3JvOkkq5wWM=" alt="Coconut Water" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Coconut Water</p>
+              <p class="text-yellow-400 text-xl font-bold">₹70</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Coconut Water" data-price="70">Add to Cart</button>
+              </div>
+               <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://t4.ftcdn.net/jpg/15/90/26/83/360_F_1590268392_uSG7auziP9y21sgK6kza7WGPDjPxdLis.jpg" alt="Mix Fruit Juice" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Mix Fruit Juice</p>
+              <p class="text-yellow-400 text-xl font-bold">₹70</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Mix Fruit Juice" data-price="70">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Milk Shake Category -->
+          <div class="menu-category bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-2xl">
+            <h3 class="text-3xl font-bold mb-6">Milk Shake</h3>
+            <div class="menu-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.indianhealthyrecipes.com/wp-content/uploads/2021/04/mango-milkshake-recipe.jpg" alt="Mango Shake" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Mango Shake</p>
+              <p class="text-yellow-400 text-xl font-bold">₹60</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Mango Shake" data-price="60">Add to Cart</button>
+              </div>
+               <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://cdn.healthyrecipes101.com/recipes/images/smoothies/how-long-does-apple-smoothie-last-clartuudx007mub1b7iq134av.webp" alt="Apple Shake" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Apple Shake</p>
+              <p class="text-yellow-400 text-xl font-bold">₹60</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Apple Shake" data-price="60">Add to Cart</button>
+              </div>
+               <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://img.clevup.in/360704/SKU-0257_0-1717755199908-1739101563353.jpg?width=600&format=webp" alt="Pineapple Shake" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Pineapple Shake</p>
+              <p class="text-yellow-400 text-xl font-bold">₹60</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Pineapple Shake" data-price="60">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.shutterstock.com/image-photo/tasty-healthy-chickoochikoo-sapota-milkshake-600nw-590686490.jpg" alt="Chiku Shake" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Chiku Shake</p>
+              <p class="text-yellow-400 text-xl font-bold">₹60</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Chiku Shake" data-price="60">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmOEd01Xi-LRPU80DNukh6rlPPu6zPk4HJGA&s" alt="Papaya Shake" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Papaya Shake</p>
+              <p class="text-yellow-400 text-xl font-bold">₹60</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Papaya Shake" data-price="60">Add to Cart</button>
+              </div>
+               <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://t3.ftcdn.net/jpg/06/80/29/28/360_F_680292854_LErIPEtJpJSuog1MIER8zk8KAD1VHsoD.jpg" alt="Banana Shake" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Banana Shake</p>
+              <p class="text-yellow-400 text-xl font-bold">₹60</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Banana Shake" data-price="60">Add to Cart</button>
+              </div>
+               <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.shutterstock.com/image-photo/custard-apple-sitafal-milk-shake-600nw-500941333.jpg" alt="Sitafal Shake" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Sitafal Shake</p>
+              <p class="text-yellow-400 text-xl font-bold">₹70</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Sitafal Shake" data-price="70">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.thehungrybites.com/wp-content/uploads/2023/06/Strawberry-milkshake-frappuccino-featured.jpg" alt="Strawberry Shake" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Strawberry Shake</p>
+              <p class="text-yellow-400 text-xl font-bold">₹75</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Strawberry Shake" data-price="60">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://i.ytimg.com/vi/7jqDDNZT92g/maxresdefault.jpg" alt="Litchi Shake" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Litchi Shake</p>
+              <p class="text-yellow-400 text-xl font-bold">₹75</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Litchi Shake" data-price="75">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.alecooks.com/wp-content/uploads/2024/07/dragon-fruit.jpg" alt="Dragon Fruit Shake" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Dragon Fruit Shake</p>
+              <p class="text-yellow-400 text-xl font-bold">₹75</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Dragon Fruit Shake" data-price="75">Add to Cart</button>
+              </div>
+               <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://realfood.tesco.com/media/images/SMOOTHIE-mixedfruitpunch-He-beef6661-8d12-49dc-9357-3d09e4cffb0a-0-472x310.jpg" alt="Fruit Punch Shake" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Fruit Punch Shake</p>
+              <p class="text-yellow-400 text-xl font-bold">₹90</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Fruit Punch Shake" data-price="90">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://storage.googleapis.com/shy-pub/330116/SKU-3535_0-1719914742440.webp" alt="Kitkat Shake" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Kitkat Shake</p>
+              <p class="text-yellow-400 text-xl font-bold">₹110</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Kitkat Shake" data-price="110">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoO-Sa3oXjmOAq2jptEqJ3RfOhMGKkYaWmNA&s" alt="Oreo Shake" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Oreo Shake</p>
+              <p class="text-yellow-400 text-xl font-bold">₹110</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Oreo Shake" data-price="110">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://aartiatmaram.com/wp-content/uploads/2021/01/Kaju-Shake.jpg" alt="Kaju Shake" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Kaju Shake</p>
+              <p class="text-yellow-400 text-xl font-bold">₹120</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Kaju Shake" data-price="120">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqN_miBUv3nUAd07jpMqXfvwFduNCmOWNQLA&s" alt="Pistachio Shake" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Pistachio Shake</p>
+              <p class="text-yellow-400 text-xl font-bold">₹120</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Pistachio Shake" data-price="120">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://cdn.grofers.com/assets/search/usecase/banner/badam_shake_01.png" alt="Badam Shake" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Badam Shake</p>
+              <p class="text-yellow-400 text-xl font-bold">₹120</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Badam Shake" data-price="120">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://jaipurcakengifts.com/images/thumbs/000/0001577_rose-gulkand-shake_550.webp" alt="Gulkand Shake" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Gulkand Shake</p>
+              <p class="text-yellow-400 text-xl font-bold">₹130</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Gulkand Shake" data-price="130">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://i.ytimg.com/vi/x4iLqy7QEmo/maxresdefault.jpg" alt="Anjeer Shake" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Anjeer Shake</p>
+              <p class="text-yellow-400 text-xl font-bold">₹130</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Anjeer Shake" data-price="130">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.natashamohan.com/wp-content/uploads/2025/02/Dry-Fruit-Smoothie.jpg" alt="Mix Dryfruit Shake" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Mix Dryfruit Shake</p>
+              <p class="text-yellow-400 text-xl font-bold">₹140</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Mix Dryfruit Shake" data-price="140">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Matka Kulfi Category -->
+          <div class="menu-category bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-2xl">
+            <h3 class="text-3xl font-bold mb-6">Matka Kulfi</h3>
+            <div class="menu-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.thedeliciouscrescent.com/wp-content/uploads/2017/10/Malai-Kulfi-6.jpg" alt="Malai Kulfi" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Malai Kulfi</p>
+              <p class="text-yellow-400 text-xl font-bold">₹30</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Malai Kulfi" data-price="30">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://5.imimg.com/data5/SELLER/Default/2024/1/375202042/ZP/KJ/OQ/77774594/dryfruit-rabdi-kulfi.jpeg" alt="Rabdi Kulfi" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Rabdi Kulfi</p>
+              <p class="text-yellow-400 text-xl font-bold">₹30</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Rabdi Kulfi" data-price="30">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.sharmispassions.com/wp-content/uploads/2014/05/mango-kulfi7.jpg" alt="Mango Kulfi" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Mango Kulfi</p>
+              <p class="text-yellow-400 text-xl font-bold">₹40</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Mango Kulfi" data-price="40">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.funfoodfrolic.com/wp-content/uploads/2020/05/Kesar-Pista-Kulfi.jpg" alt="Kesar Pista Kulfi" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Kesar Pista Kulfi</p>
+              <p class="text-yellow-400 text-xl font-bold">₹45</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Kesar Pista Kulfi" data-price="45">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Ice Cream Category -->
+          <div class="menu-category bg-white/10 backdrop-blur-sm p-8 rounded-2xl shadow-2xl">
+            <h3 class="text-3xl font-bold mb-6">Ice Cream</h3>
+            <div class="menu-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://static.toiimg.com/thumb/54677722.cms?width=1200&height=900" alt="Vanilla" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Vanilla</p>
+              <p class="text-yellow-400 text-xl font-bold">₹50</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Vanilla" data-price="50">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSjtuMumQSNfewX0O_SPc2Hjp89OIJWS5Njw&s" alt="Strawberry" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Strawberry</p>
+              <p class="text-yellow-400 text-xl font-bold">₹50</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Strawberry" data-price="50">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://icecreambakery.in/wp-content/uploads/2025/02/butterscotch-ice-cream-recipe.jpg" alt="Butter Scotch" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Butter Scotch</p>
+              <p class="text-yellow-400 text-xl font-bold">₹55</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Butter Scotch" data-price="55">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLmeNJfPKahCjmXF5B_kq2KXmmeOC_qginPA&s" alt="Mango" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Mango</p>
+              <p class="text-yellow-400 text-xl font-bold">₹55</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Mango" data-price="55">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.crazyvegankitchen.com/wp-content/uploads/2023/12/banana-ice-cream-recipe-1.jpg" alt="Banana" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Banana</p>
+              <p class="text-yellow-400 text-xl font-bold">₹55</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Banana" data-price="55">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://5.imimg.com/data5/SELLER/Default/2025/5/511440656/FI/EL/GV/37776596/kesar-pista-ice-cream-500x500.png" alt="Keasr Pista" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Kesar Pista</p>
+              <p class="text-yellow-400 text-xl font-bold">₹60</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Kesar Pista" data-price="60">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://www.milkmaid.in/sites/default/files/2022-12/Chocolate-Ice-Cream-335x300.jpg" alt="Chocolate" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Chocolate</p>
+              <p class="text-yellow-400 text-xl font-bold">₹65</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Chocolate" data-price="65">Add to Cart</button>
+              </div>
+              <div class="menu-item bg-black/50 rounded-xl p-4 shadow-lg">
+              <img src="https://curlygirlkitchen.com/wp-content/uploads/2025/03/Double-Dutch-Dark-Chocolate-Ice-Cream-Homemade-Frozen-Custard-010.jpg" alt="Dark Chocolate" class="w-full h-32 object-cover rounded-lg mb-4"/>
+              <p class="font-semibold text-lg">Dark Chocolate</p>
+              <p class="text-yellow-400 text-xl font-bold">₹70</p>
+              <button class="add-to-cart bg-yellow-400 text-gray-800 font-bold py-2 px-4 rounded-full mt-4 transition-all duration-300 hover:bg-yellow-500 hover:scale-105" data-name="Dark Chocolate" data-price="70">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- Cart Modal -->
+      <div
+        id="cart-modal"
+        class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4"
+      >
+        <div
+          class="bg-gray-800 p-8 rounded-xl shadow-2xl max-w-md w-full relative"
+        >
+          <button
+            class="close-button absolute top-4 right-4 text-3xl text-gray-400 hover:text-white transition-all duration-300"
+          >
+            &times;
+          </button>
+          <h3 class="text-3xl font-bold text-yellow-400 mb-6">Your Cart</h3>
+          <ul id="cart-items" class="list-none space-y-4 mb-6 text-left"></ul>
+          <div class="space-y-2">
+            <p class="flex justify-between items-center text-lg">
+              Subtotal:
+              <span class="font-bold text-white"
+                >₹<span id="subtotal">0</span></span
+              >
+            </p>
+            <p class="flex justify-between items-center text-lg">
+              CGST (5%):
+              <span class="font-bold text-white"
+                >₹<span id="cgst">0</span></span
+              >
+            </p>
+            <p class="flex justify-between items-center text-lg">
+              SGST (5%):
+              <span class="font-bold text-white"
+                >₹<span id="sgst">0</span></span
+              >
+            </p>
+            <hr class="border-t border-gray-600 my-4" />
+            <p
+              class="total-bill-text flex justify-between items-center text-2xl font-bold"
+            >
+              Total Bill:
+              <span class="text-yellow-400"
+                >₹<span id="total-bill">0</span></span
+              >
+            </p>
+          </div>
+          <button
+            id="pay-button"
+            class="pay-button bg-yellow-400 text-gray-800 font-bold py-3 px-6 rounded-full mt-6 w-full transition-all duration-300 hover:bg-yellow-500 hover:scale-105"
+          >
+            PAY
+          </button>
+        </div>
+      </div>
+
+      <!-- Payment Modal -->
+      <div
+        id="payment-modal"
+        class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4"
+      >
+        <div
+          class="bg-gray-800 p-8 rounded-xl shadow-2xl max-w-md w-full relative text-center"
+        >
+          <button
+            class="close-button absolute top-4 right-4 text-3xl text-gray-400 hover:text-white transition-all duration-300"
+          >
+            &times;
+          </button>
+          <h3 class="text-3xl font-bold text-yellow-400 mb-6">
+            Payment Options
+          </h3>
+          <div class="space-y-4">
+            <button
+              class="payment-option bg-gray-700 text-white font-bold py-3 px-6 rounded-full w-full transition-all duration-300 hover:bg-yellow-500 hover:text-gray-800 hover:scale-105"
+            >
+              Pay by Card
+            </button>
+            <button
+              class="payment-option bg-gray-700 text-white font-bold py-3 px-6 rounded-full w-full transition-all duration-300 hover:bg-yellow-500 hover:text-gray-800 hover:scale-105"
+            >
+              Pay by UPI
+            </button>
+            <button
+              class="payment-option bg-gray-700 text-white font-bold py-3 px-6 rounded-full w-full transition-all duration-300 hover:bg-yellow-500 hover:text-gray-800 hover:scale-105"
+            >
+              Allow waiter to collect Cash on Table
+            </button>
+            <button
+              class="payment-option bg-gray-700 text-white font-bold py-3 px-6 rounded-full w-full transition-all duration-300 hover:bg-yellow-500 hover:text-gray-800 hover:scale-105"
+            >
+              Cash on Delivery
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Section -->
+      <footer class="p-4 text-center text-gray-400 text-sm">
+        <p>&copy; 2025 The Cuisine. All Rights Reserved.</p>
+      </footer>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const menuButton = document.getElementById("menu-button");
+        const navMenu = document.getElementById("nav-menu");
+        const cartButton = document.getElementById("cart-button");
+        const cartModal = document.getElementById("cart-modal");
+        const payButton = document.getElementById("pay-button");
+        const paymentModal = document.getElementById("payment-modal");
+        const closeButtons = document.querySelectorAll(".close-button");
+        const addToCartButtons = document.querySelectorAll(".add-to-cart");
+
+        const cartItemsList = document.getElementById("cart-items");
+        const subtotalSpan = document.getElementById("subtotal");
+        const cgstSpan = document.getElementById("cgst");
+        const sgstSpan = document.getElementById("sgst");
+        const totalBillSpan = document.getElementById("total-bill");
+        const cartCountSpan = document.getElementById("cart-count");
+
+        let cart = [];
+
+        // Helper function to update cart display
+        const updateCartDisplay = () => {
+          cartItemsList.innerHTML = "";
+          let subtotal = 0;
+          cart.forEach((item) => {
+            const li = document.createElement("li");
+            li.classList.add(
+              "flex",
+              "justify-between",
+              "items-center",
+              "text-gray-300"
+            );
+            li.innerHTML = `
+                        <span>${item.name} (x${item.quantity})</span>
+                        <span>₹${item.price * item.quantity}</span>
+                    `;
+            cartItemsList.appendChild(li);
+            subtotal += item.price * item.quantity;
+          });
+
+          const cgst = subtotal * 0.05;
+          const sgst = subtotal * 0.05;
+          const totalBill = subtotal + cgst + sgst;
+
+          subtotalSpan.textContent = subtotal.toFixed(2);
+          cgstSpan.textContent = cgst.toFixed(2);
+          sgstSpan.textContent = sgst.toFixed(2);
+          totalBillSpan.textContent = totalBill.toFixed(2);
+          cartCountSpan.textContent = cart.length;
+        };
+
+        // Event listeners for adding to cart
+        addToCartButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const itemName = button.dataset.name;
+            const itemPrice = parseFloat(button.dataset.price);
+
+            const existingItem = cart.find((item) => item.name === itemName);
+            if (existingItem) {
+              existingItem.quantity++;
+            } else {
+              cart.push({ name: itemName, price: itemPrice, quantity: 1 });
+            }
+
+            updateCartDisplay();
+          });
+        });
+
+        // Event listeners for showing modals
+        cartButton.addEventListener("click", () => {
+          cartModal.classList.remove("hidden");
+        });
+        payButton.addEventListener("click", () => {
+          cartModal.classList.add("hidden");
+          paymentModal.classList.remove("hidden");
+        });
+
+        // Event listeners for closing modals
+        closeButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            cartModal.classList.add("hidden");
+            paymentModal.classList.add("hidden");
+          });
+        });
+
+        // JavaScript for mobile menu toggle
+        if (menuButton && navMenu) {
+          menuButton.addEventListener("click", () => {
+            navMenu.classList.toggle("hidden");
+            navMenu.classList.toggle("flex");
+            navMenu.classList.toggle("absolute");
+            navMenu.classList.toggle("top-20");
+            navMenu.classList.toggle("right-6");
+            navMenu.classList.toggle("bg-black");
+            navMenu.classList.toggle("bg-opacity-80");
+            navMenu.classList.toggle("p-6");
+            navMenu.classList.toggle("rounded-lg");
+            navMenu.classList.toggle("shadow-lg");
+            navMenu.classList.toggle("z-50");
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

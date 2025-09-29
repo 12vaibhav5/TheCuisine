@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cuisine - Contact Us</title>
+    <!-- Use Tailwind CSS for modern styling and responsiveness -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom styles for the responsive background image */
+        .bg-cover-image {
+            /* Replace this URL with your image address from Pexels */
+            background-image: url('https://images.pexels.com/photos/1395319/pexels-photo-1395319.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+        /* Gradient and shadow effect for the website title */
+        .cool-title {
+            background-image: linear-gradient(to right, #fde047, #facc15);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+        }
+        .nav-link {
+            transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        .nav-link:hover {
+            color: #fde047;
+            transform: scale(1.1);
+        }
+        /* Style for the confirmation message */
+        .confirmation-message {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .confirmation-message.visible {
+            display: block;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-cover-image bg-fixed">
+    <div class="min-h-screen flex flex-col backdrop-blur-sm bg-black/50 text-white">
+        <!-- Header Section -->
+        <header class="p-6 md:p-8 flex items-center justify-between">
+            <h1 class="text-4xl sm:text-5xl font-bold cool-title">The Cuisine</h1>
+            
+            <!-- Mobile Menu Button -->
+            <button id="menu-button" class="md:hidden text-2xl p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-transform duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-8 h-8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+                <span class="sr-only">Open main menu</span>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav id="nav-menu" class="hidden md:flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 text-xl font-medium items-center">
+                <a href="index.html" class="nav-link text-white hover:text-yellow-400">Home</a>
+                <a href="menu.html" class="nav-link text-white hover:text-yellow-400">Menu</a>
+                <a href="about.html" class="nav-link text-white hover:text-yellow-400">About Us</a>
+                <a href="contact.html" class="nav-link text-yellow-400">Contact Us</a>
+                <a href="homedelivery.html" class="nav-link text-white hover:text-yellow-400">Home Delivery</a>
+                <a href="booking.html" class="nav-link text-white hover:text-yellow-400">Book a Table</a>
+            </nav>
+        </header>
+        
+        <!-- Main Content Section -->
+        <main class="contact-main flex-grow flex items-center justify-center p-6 text-center">
+            <div class="bg-white/10 backdrop-blur-sm p-8 sm:p-12 md:p-16 rounded-3xl shadow-2xl max-w-2xl w-full transform transition-all duration-500">
+                <h2 class="text-4xl sm:text-6xl font-extrabold mb-8 text-yellow-300 drop-shadow-lg">Contact Us</h2>
+                <div class="contact-content space-y-6 text-lg sm:text-xl font-light leading-relaxed">
+                    <p>Needed help? Contact us.</p>
+                    <div class="contact-info space-y-4">
+                        <p><strong>Our Mobile No:</strong> <a href="tel:1234567890" class="text-yellow-400 hover:underline">1234567890</a></p>
+                        <p><strong>Our Email ID:</strong> <a href="mailto:thecuisine@gmail.com" class="text-yellow-400 hover:underline">thecusine@gmail.com</a></p>
+                    </div>
+                    <hr class="border-t border-gray-400 my-4">
+                    <div class="contact-form space-y-4">
+                        <h3 class="text-3xl font-bold text-white">Report a Problem</h3>
+                        <textarea id="report-textarea" placeholder="Please describe your problem here..." class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"></textarea>
+                        <button id="submit-report-button" class="w-full py-3 px-6 bg-yellow-400 text-gray-800 font-bold rounded-full shadow-lg hover:bg-yellow-500 transition-all duration-300 transform hover:scale-105">Submit Report</button>
+                        <!-- New confirmation message element -->
+                        <div id="confirmation-message" class="confirmation-message text-center text-green-400 font-semibold mt-4">
+                            Your Report has been Submitted
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer Section -->
+        <footer class="p-4 text-center text-gray-400 text-sm">
+            <p>&copy; 2025 The Cuisine. All Rights Reserved.</p>
+        </footer>
+    </div>
+    
+    <script>
+        // JavaScript for mobile menu toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.getElementById('menu-button');
+            const navMenu = document.getElementById('nav-menu');
+            const submitButton = document.getElementById('submit-report-button');
+            const confirmationMessage = document.getElementById('confirmation-message');
+
+            if (menuButton && navMenu) {
+                menuButton.addEventListener('click', () => {
+                    navMenu.classList.toggle('hidden');
+                    navMenu.classList.toggle('flex');
+                    navMenu.classList.toggle('absolute');
+                    navMenu.classList.toggle('top-20');
+                    navMenu.classList.toggle('right-6');
+                    navMenu.classList.toggle('bg-black');
+                    navMenu.classList.toggle('bg-opacity-80');
+                    navMenu.classList.toggle('p-6');
+                    navMenu.classList.toggle('rounded-lg');
+                    navMenu.classList.toggle('shadow-lg');
+                    navMenu.classList.toggle('z-50');
+                });
+            }
+
+            if (submitButton && confirmationMessage) {
+                submitButton.addEventListener('click', () => {
+                    // Make the message visible
+                    confirmationMessage.classList.add('visible');
+
+                    // Optionally, clear the textarea
+                    const textarea = document.getElementById('report-textarea');
+                    if (textarea) {
+                        textarea.value = '';
+                    }
+
+                    // Hide the message after 5 seconds
+                    setTimeout(() => {
+                        confirmationMessage.classList.remove('visible');
+                    }, 5000);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
